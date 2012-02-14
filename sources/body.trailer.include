@@ -1,19 +1,3 @@
-    </div>
-
-   </div>
-
-<div class="offset10">
-<div id="rightmenu">
-<div class="news"> <h4>OCaml Users meeting 2012</h4> Next OCaml Users
-Meeting will be colocated with ICFP'2012, in September in Copenhagen !
-</div>
-<div class="version"> <h4>Stable version is<br/>TypeRex 1.0</h4>
- <a href="download.html">Download Page</a>.
-</div>
-</div>
-</div>
-
-  </div>
 </div>
 
 <div class="footer">
@@ -22,20 +6,21 @@ Meeting will be colocated with ICFP'2012, in September in Copenhagen !
 
     <div class="offset3 span3">
      <ul>
-       <li><h4>Learn</h4></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="screenshots.html">Screenshots</a></li>
+       <li><h4>Use</h4></li>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="support.html">Support</a></li>
      </ul>
     </div>
 
-
     <div class="span3">
       <ul>
-        <li><h4>Use</h4></li>
-        <li><a href="download.html">Download</a></li>
-        <li><a href="manual.html">Documentation</a></li>
-        <li><a href="support.html">Support</a></li>
+        <li><h4>Manual</h4></li>
+        <li><a href="manual-index.html">Introduction</a></li>
+        <li><a href="manual-setup.html">Installation</a></li>
+        <li><a href="manual-ide.html">IDE</a></li>
+        <li><a href="manual-tools.html">Tools</a></li>
+        <li><a href="manual-faq.html">FAQ</a></li>
       </ul>
     </div>
 

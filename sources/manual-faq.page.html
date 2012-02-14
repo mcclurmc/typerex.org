@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+#include "head.include"
+   <title>TypeRex</title>
+</head>
+<body>
+
+#include "body.header.include"
+#include "body.manual-index.include"
+
+<h1>Common issues and questions</h1>
+
+<h2>General</h2>
+
+<h4>Reporting bugs</h4>
+
+<p>Bugs reports should be sent through the issue tracker at
+<a href="https://github.com/OCamlPro/typerex/issues">
+<tt>https://github.com/OCamlPro/typerex/issues</tt></a> (or by mail). If the
+problem is an uncaught exception (of the form &#X201C;Error:&#X2026;&#X201D;), make
+sure to provide the full backtrace (available in the <code>*Messages*</code>
+buffer). In addition to the action which triggered the problem, an
+accurate description of your code (and configuration) will be helpful,
+especially for a wrong result (for example, incomplete).</p>
+
+<h4>What about other editors and operating systems</h4>
+
+<p>Eclipse support is planed in a near future. Some people have also
+expressed interest in VIM support, so we pay attention to this too.
+Windows support is also planed (there may not be a lot of work to do
+for that).</p>
+
+<h4>How does it compare to other similar tools</h4>
+
+<p>Many other tools exist to improve the development in OCaml, and it is
+not possible to describe each of them here. Generally, we believe the
+refactoring and semantic grep capabilities of TypeRex to be the most
+advanced, (except for the particular case of Oug, whose very
+expressive graph description allows similar queries). Identifier querying
+is slightly more powerful and robust than its equivalents in,
+<em>e.g.</em>, Tuareg, OCamlSpotter, or OcaIDE, with some minor
+differences in user interface choices. TypeRex does not yet have
+graphical summaries as in ODT or OCaIDE, or build management. Syntax
+coloring is more detailed and systematic than other solutions. Auto
+completion is currently restricted to identifiers (and very approximate for
+local identifiers), and does not support syntactic constructs such as
+pattern matching (as was proposed in OcamlWizard and the latest
+version of OCamlSpotter), but it is already quite accurate and
+responsive on identifiers defined in other modules.</p>
+
+<h2>Project setup / building annotations</h2>
+
+<h4>Findlib configuration does not work</h4>
+
+<p>We are investigating possible issues with findlib itself.</p>
+
+<h4>What are .cmt(i) files exactly required for</h4>
+
+<p>The binary annotations provide a semantic descriptions of (type-able)
+source code, together with accurate location information. They are
+used to know about binding in a large sense, for example applying a
+functor to an argument somehow &#X201C;binds&#X201D; the functor&#X2019;s parameter&#X2019;s
+signature members to the actual argument&#X2019;s members. Navigation and grep
+will only range over binary-annotated code, which can generally depend
+on libraries without requiring annotations for them, as long as cmi
+files are available (with some loss of completeness
+though). Completion can use .cmi or .cmt(i) files, but the latter (and
+access to the source code) will enable comment showing. Syntax
+coloring does not require any annotation at all, of course.</p>
+
+<h4>How to enable TypeRex for developping the OCaml compiler</h4>
+
+<p>Just copy
+<a href="http://www.ocamlpro.com/typerex/doc/ocaml-typerex.patch">this patch</a>
+into the main directory, and run
+<code>patch -p0 -i ocaml-typerex.patch</code>, then rebuild the compiler
+starting from the standard library (mandatory): <code>make clean</code>,
+<code>make world</code>, &#X2026;Please note that only the compilers are annotated (with most of the
+stdlib, but not dynlink), and not camlp4 and ocamlbuild, because packs
+are not yet supported. Furthermore, generated files (other than
+ocamllex/ocamlyacc) are not detected, so don&#X2019;t expect a fully
+automatic renaming of <code>List.iter</code> yet.</p>
+
+<h2>Browsing and refactoring</h2>
+
+<h4>{module, value, &#X2026;} x not found [in load-path]</h4>
+
+<p>This means that some identifiers could not be resolved, and can occur
+in many situations. For a toplevel module, this probably means a
+configuration problem (check your <code>.typerex</code>).</p>
+
+<h4>Grep, Cycle, and renaming sometimes lag</h4>
+
+<p>These command can take up to several seconds on large projects,
+because some computations have to be done over the whole code. Most of
+it is cached, though, to speed up subsequent invocations (caching
+should be correctly invalidated on a cmt file basis).</p>
+
+<h4>&#X201C;Goto definition&#X201D; fails, but &#X201C;Grep&#X201D; finds the definition</h4>
+
+<p>This is expected if the identifier comes from, for example, an
+included module (more generally if the identifiers is internally
+renamed by the OCaml compiler during type inference). The grep (or
+renaming) algorithm takes these renamings into account to collect the
+full set of relevant identifiers, so it is currently more powerful.</P><H4 CLASS="subsubsection">Locations are shifted, TypeRex complains about unsaved files</H4><P>
+TypeRex uses the Emacs auto-save mechanism to know about modified
+buffers, so that it can usually re-align shifted positions
+correctly. This is not a perfect solution though, and in particular,
+possible auto-save files (<code>#file.ml#</code>) from older sessions will
+confuse TypeRex, if they are more recent than the file itself. In
+this case you should delete them.</p>
+
+<h2>Syntax coloring</h2>
+
+<h4>Coloring is sometimes inaccurate</h4>
+
+<p>The current implementation has exact lexing information, but only uses
+heuristics for approximate syntax computation (because it needs to
+work for syntaxically incorrect buffers). This solution is not perfect
+and also suffers from some thresholds which are introduced to keep it
+responsive enough.</p>
+
+<h2>Auto completion</h2>
+
+<h4>Completion is inaccurate for definitions in the current buffer</h4>
+
+<p>The current implementation of completion is semantic for external
+compilation units (i.e., with a .cmt(i) or .cmi, but only lexical for
+the current buffer, so this is expected.</p>
+
+<h4>Completion is slow for large files</h4>
+
+<p>This feature is still experimental, and will improve.</p>
+
+</div>
+</div>
+
+#include "body.trailer.include"
+
+</body>
+</html>

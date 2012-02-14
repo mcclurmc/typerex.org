@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+#include "head.include"
+   <title>TypeRex</title>
+</head>
+<body>
+
+#include "body.header.include"
+#include "body.manual-index.include"
+
+<h1>TypeRex setup</h1>
+
+<p>This chapter describes the process of installing and configuring
+TypeRex from the sources, on a Unix environment with OCaml already
+installed.</p>
+
+<h2><a name="download"></a>TypeRex distribution and supported environments</h2>
+
+<h3>System requirements</h3>
+
+<ul>
+<li>Linux (32-bit or 64-bit) or MacOS (tested with 10.6.8)</li>
+<li CLASS="li-itemize">OCaml &#X2265;3.11.2</li>
+<li CLASS="li-itemize">Emacs (Tested with 23.2.1, does not work under
+X-Emacs, reported to work with Aquamacs)</li>
+</ul>
+
+<h3>Obtaining TypeRex</h3>
+
+<p>We recommend using the compressed archive distribution of
+TypeRex.</p>
+
+<h4>Source archive</h4>
+
+<p>All versions of TypeRex can be found at
+<a href="http://www.ocamlpro.com/typerex/files">
+<tt>http://www.ocamlpro.com/typerex/files</tt></a>.</p>
+
+<h2><a name="configuration"></a>Installation</h2>
+
+<h3>Build configuration</h3>
+
+<p>
+<pre>    1:  ./configure [options]</pre>
+
+Useful options (examples):
+
+<pre>
+    --bindir=/opt/typerex
+    --with-lispdir=~/.emacs.d
+        default is a system-wide installation path
+    --with-ocp-build=&lt;command&gt;
+        default is 'ocp-build' if found, `pwd`/boot/ocp-build.boot otherwise
+    --disable-auto-complete
+        default is to install Emacs auto-complete, unless found in lispdir
+    --enable-cmt
+        binary-annotate typerex sources (for typerex developpers)
+</pre>
+
+You may also specify an <code>EMACS</code> variable, as:
+
+<pre>    1:  ./configure [options] EMACS=aquamacs</pre>
+</p>
+
+<h3>Building</h3>
+
+<p><pre>    2:  make</pre>
+
+<h3>Installation</h3>
+
+<pre>    3:  sudo make install</pre>
+
+Append the contents of emacs.append to your <code>&#X223C;/.emacs</code>:
+
+<pre>    4:  cat emacs.append &gt;&gt;~/.emacs</pre>
+
+(or paste the contents where you like). The next section
+shows how to customize this Emacs configuration in order to handle
+non-standard settings and to fine-tune various TypeRex options.</p>
+
+<h3>Testing the environment</h3>
+
+<p>Open a <code>.ml</code> file inside emacs, and switch to the
+<code>*Messages*</code> buffer. If you see the line &#X201C;Connection
+established with TypeRex server&#X201D;, the installation is OK.</p>
+
+<h2><a name="configuration"></A>TypeRex configuration (optional)</h2>
+
+<p>The following additional configuration is done through Emacs
+customizable variables, and can be changed in two ways:</p>
+
+<ul>
+<li>By directly editing the .emacs file to change the values.</li>
+<li>Through the Emacs customization mechanism, by choosing
+&#X201C;Customize TypeRex Mode&#X201D; under the TypeRex Menu. Remember to check
+your <code>.emacs</code> for duplicate variable customization, because
+<code>setq</code> assignments are ignored when updating the
+<code>custom-set-variables</code> expression. Also note that many changes
+require restarting Emacs to become effective, or at least running
+<code>M-x ocp-restart-server</code>.</li>
+</ul>
+
+<h3>TypeRex syntax coloring</h3>
+
+<p>By default, TypeRex proposes a new syntax coloration for OCaml source files.
+  You may disable it by setting <code>ocp-syntax-coloring</code>
+  to <code>nil</code> instead of <code>t</code>. Alternatively, you
+  can change the coloring theme to look almost like Tuareg mode (with
+  minor improvements and differences) by
+  setting <code>ocp-theme</code> to <code>"tuareg_like"</code>.</p>
+
+<h3>Auto-completion</h3>
+
+<p>A (still very primitive) contextual identifier completion feature is
+provided, relying on the Emacs Auto Complete Mode written by Tomohiro
+Matsuyama. It can be enabled by uncommenting the following lines in
+<tt>.emacs</tt>:
+
+<pre>
+    ;; AutoComplete
+    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/auto-complete-mode")
+    (require 'auto-complete-config)
+    (add-to-list 'ac-dictionary-directories
+                 "/usr/local/share/emacs/site-lisp/auto-complete-mode/ac-dict")
+    ;; To disable auto-completion, comment out the following lines:
+    (ac-config-default)
+    (setq ocp-auto-complete t)
+
+    ;; Comment out to allow auto-complete for all supported modes:
+    (setq ac-modes '(typerex-mode))
+
+    ;; I want immediate menu pop-up
+    (setq ac-auto-show-menu 0.)
+
+    ;; Short delay before showing help
+    (setq ac-quick-help-delay 0.3)
+
+    ;; Uncomment to disable help showing
+    ;;(setq ac-use-quick-help nil)
+
+    ;; Number of characters required to start
+    (setq ac-auto-start 0)
+</pre>
+
+<b>Warning!</b> Do not set a black background using <code>M-x
+  invert-face default</code> when using auto-completion ; instead,
+  start Emacs with <code>emacs -r</code>.</p>
+
+<p>Changing the default keys and behavior can be useful to fit the
+user&#X2019;s habits. For example, the following keeps normal behavior
+of <code>TAB</code>, <code>RET</code>, <code>&lt;up&gt;</code>,
+and <code>&lt;down&gt;</code>, and uses
+respectively <code>&lt;`&gt;</code>, <code>&lt;\&gt;</code>, <code>&lt;C-p&gt;</code>
+and <code>&lt;C-up&gt;</code> instead, remapping <code>'`'</code>
+to <code>&lt;C-`&gt;</code>.</p>
+
+<pre>
+    ;; AutoComplete keymap:
+    (define-key ac-mode-map "`" 'auto-complete)
+    ;; Workaround a bug in auto complete mode:
+    (add-hook 'auto-complete-mode-hook
+              (lambda () (define-key (current-global-map) "`" nil)))
+    (define-key ac-mode-map [?\C-`] (lambda () (interactive) (insert "`")))
+    (define-key ac-completing-map "\\" 'ac-complete)
+    (define-key ac-completing-map "\C-n" 'ac-next)
+    (define-key ac-completing-map "\C-p" 'ac-previous)
+    (define-key ac-completing-map "\r" nil)
+    (define-key ac-completing-map "\t" nil)
+    (define-key ac-completing-map [up] nil)
+    (define-key ac-completing-map [down] nil)
+</pre>
+
+<p>On some keyboards, <code>&lt;</code><SUp>2</SUp><code>&gt;</code>
+and <code>&lt;$&gt;</code> may be more appropriate
+than <code>&lt;`&gt;</code>, <code>&lt;\&gt;</code>. Another
+alternative is <code>&lt;C-tab&gt;</code>.</p><p>Alternatively, one
+may want to use all standard keys, but with auto-start disabled and
+using a specific trigger key.</p>
+
+<pre>
+    ;; AutoComplete keymap: standard keys (RET - TAB), but no auto-start
+    (setq ac-auto-start nil)
+    (define-key ac-mode-map (kbd "&lt;C-tab&gt;") 'auto-complete)
+</pre>
+
+<p>See the Auto Complete Mode user manual for more details on
+the corresponding configuration.</p>
+
+<h3>Reconfiguring paths</H3>
+
+<p>The values of all the paths described in the following are determined
+at configure time, so normally you should not need to change them,
+unless you didn&#X2019;t perform the install step.</p>
+
+<h4>Emacs lisp directory</h4>
+
+<p>The directory in which the TypeRex (and auto-complete) lisp code is
+searched for is configured by the <code>(add-to-list 'load-path ...)</code>
+line in <code>emacs.append</code>. Note that if you ran <code>configure</code>
+with default options the value should be
+<code>/usr/local/share/emacs/site-lisp</code> which is in the default
+load-path, so this line is probably even not required.</p>
+
+<h4>TypeRex server command</h4>
+
+<p>The TypeRex development environment is implemented by means of a
+server which is launched by Emacs. The command which is fed to the
+shell to launch the server is defined by the variable
+<code>ocp-server-command</code>. You can use it for example to pass a particular
+OCAMLliB environment variable (see bellow) to the server. In a
+standard setup, the corresponding line in emacs.append is also not
+required as the default value is the executable base name, and is
+searched in the path.</p>
+
+<h4>OCaml standard library</h4>
+
+<p>Most TypeRex executables (most notably the server) need to access
+the OCaml standard library at runtime. They look at the following
+options, in decreasing priority order, to determine the appropriate
+directory:</p>
+
+<ol>
+<li><code>OCAMLliB</code> environment variable</li>
+<li><code>CAMLliB</code> environment variable</li>
+<li>option <code>ocamllib</code>
+  in <code>&#X223C;/.ocp/ocaml.conf</code></li>
+<li>the value determined by the configure script when building
+  typerex.</li>
+</ol>
+
+</div>
+</div>
+
+#include "body.trailer.include"
+
+</body>
+</html>

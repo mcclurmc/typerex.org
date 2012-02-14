@@ -41,41 +41,38 @@
 </div>
 
 <div class="container">
-
-<div class="carousel">
-  <div class="carousel-inner">
-
-    <div class="item active">
-      <img src="files/grep_Texp_for.png"/>
-      <div class="carousel-caption">
-        <h4>Semantic Grep</h4>
-        <p>TypeRex provides semantic grep for you project. This feature show you
-          where an identifier is defined and used in your project.</p>
-      </div>
-    </div>
-
-    <div class="item">
-      <img src="files/completion.png"/>
-      <div class="carousel-caption">
-        <h4>Completion</h4>
-        <p>TypeRex provides code-completion for you project. This feature is still
-          experimental in the first version of TypeRex.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
-</div>
-
-<div class="container">
 <div class="row">
-<div class="span6">
-<h2>The OCaml Programming Studio</h2>
+<div class="span3">
+<div class="well sidebar-nav">
+<ul class="nav nav-list">
+<li><a href="manual-index.html">Overview</a></li>
+<li><a href="manual-setup.html">Installation</a>
+ <ul class="subsection">
+  <li><a href="manual-setup.html#download">Download</a></li>
+  <li><a href="manual-setup.html#configuration">Configuration</a></li>
+  <li><a href="manual-setup.html#installation">Installation</a></li>
+ </ul></li>
+<li><a href="manual-ide.html">IDE</a>
+ <ul class="subsection">
+  <li><a href="manual-ide.html#setup">Setup</a></li>
+  <li><a href="manual-ide.html#browsing">Browsing</a></li>
+  <li><a href="manual-ide.html#refactoring">Refactoring</a></li>
+  <li><a href="manual-ide.html#coloring">Coloring</a></li>
+  <li><a href="manual-ide.html#completion">Completion</a></li>
+  <li><a href="manual-ide.html#assumptions">Assumptions</a></li>
+  <li><a href="manual-ide.html#recovery">Recovery</a></li>
+ </ul>
+<li><a href="manual-tools.html">Tools</a></li>
+<li><a href="manual-faq.html">FAQ</a></li>
+</ul>
+</div>
+</div>
 
-<p>TypeRex is a new development environment which improves what was
+<div class="span9">
+
+<h1>Introduction</h1>
+
+<p>We present a new development environment which improves what was
 previously available for OCaml, by bringing some of the features which
 are considered classic in editors for mainstream programming languages.</p>
 
@@ -84,30 +81,38 @@ parts of the OCaml compiler to provide a more accurate semantic view
 of the OCaml programs which are edited, enabling a set of specific
 commands and behaviors.</p>
 
-<p><a class="btn" href="files/typerex.tar.gz">Download &rsaquo;&rsaquo;</a></p>
-</div>
+<p>A few additional tools are provided together with the TypeRex
+environment, which mostly serve to perform the necessary specific
+processing on the edited programs, namely, provide appropriate
+<em>binary annotations</em> about the source files.</p>
 
-<div class="span6">
-<h2>Features</h2>
+<h2>Summary of TypeRex features</h2>
 
-TypeRex contains the following features:
+<ul>
+ <li>Improved syntax coloring</li>
+ <li>Auto-completion of identifiers (experimental)</li>
+ <li>Browsing of identifiers: show type and comment, go to definition,
+ cycle between alternate definitions, and semantic grep;</li>
+ <li>Strictly semantic-preserving, local and whole-program refactoring:
+   <ul>
+     <li>renaming identifiers and compilation units</li>
+     <li>open elimination and reference simplification</li>
+   </ul></li>
+ <li>Robust <em>w.r.t.</em> not-recompiled, possibly unsaved buffers</li>
+ <li>Scalable (used regularly on a few hundreds of source files)</li>
+</ul>
 
-<p><ul>
-  <li> Improved syntax coloring</li>
-  <li>Auto-completion of identifiers (experimental)</li>
-  <li>Browsing of identifiers: show type and comment, go to
-  definition, cycle between alternate definitions, and semantic
-  grep;</li>
-  <li>Strictly semantic-preserving, local and whole-program refactoring:
-    <ul>
-      <li>renaming identifiers and compilation units</li>
-      <li>open elimination and reference simplification</li>
-    </ul>
-  </li>
-  <li>Robust <em>w.r.t.</em> not-recompiled, possibly unsaved
-  buffers</li>
-  <li>Scalable (used regularly on a few hundreds of source files)</li>
-</ul></p>
+<p>All the features of the Tuareg mode are also included, even when we
+provide an equivalent of them.</p>
+
+<h2>Feedback</h2>
+
+<p>Please report any bugs, unexpected behavior, or unclear
+documentation, through the Github issue tracker
+at <a href="https://github.com/OCamlPro/typerex/issues">
+<tt>https://github.com/OCamlPro/typerex/issues</tt></a>. Please
+let us know also about your most wanted features so that we can
+optimize our agenda.</p>
 
 </div>
 </div>

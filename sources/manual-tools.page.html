@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+#include "head.include"
+   <title>TypeRex</title>
+</head>
+<body>
+
+#include "body.header.include"
+#include "body.manual-index.include"
+
+<h1>TypeRex tools</h1>
+
+<p>This chapter summarizes the command-line tools which are provided
+together with the TypeRex environment.</p>
+
+<h2>ocp-type</h2>
+
+<p>The <code>ocp-type</code> command-line tool is the
+&#X201C;type-only&#X201D; OCaml compiler which is used to extract the
+binary annotations needed by the TypeRex environment. It may be
+invoked directly or through the
+<code>ocp-wrapper</code> tools (see below). It accepts the same options and
+arguments as <code>ocamlc</code>, and the specific option
+<code>-save-types</code>, to actually write the binary data to a
+file.</p>
+
+<h4>Pre-processing</h4>
+
+<p><code>ocp-type</code> also accepts pre-processors through the <code>-pp</code>
+option, which should output either</p>
+
+<ul>
+<li>an OCaml source file (if possible with line-number directives to
+allow an accurate use of TypeRex), or</li>
+<li>an OCaml dumped AST of one of the supported versions (this is the
+default behavior of <code>camlp4</code>), or</li>
+<li>a Camlp4 dumped AST of one of the supported versions, which can
+be achieved by passing the option <code>-printer Camlp4AstDumper</code> to
+<code>camlp4</code> (this is done automatically if you use
+<code>ocp-wrapper</code>).</li>
+</ul>
+
+<p>Note that the third option is better than the second one with respect
+to locations (the accuracy of which is instrumental to TypeRex
+working).</p>
+
+<h2>ocp-wrapper</h2>
+
+<p>The command <code>ocp-wrapper</code> and the specialized commands
+<code>ocp-ocamlc</code>, <code>ocp-ocamlopt</code>, <code>ocp-ocamlc.opt</code>, and
+<code>ocp-ocamlopt.opt</code> simplify the generation of binary annotations
+by invoking <code>ocp-type</code> with the appropriate options, as part of
+the usual compilation commands. Calling
+
+<pre>        ocp-wrapper -save-types &lt;command&gt; &lt;options and arguments&gt;</pre>
+
+where <code>&lt;command&gt;</code> is one of the OCaml compilers first
+invokes this compiler with the exact same options and arguments, and
+then runs <code>ocp-type</code> (unless the command-line was a linking-only
+phase) with the right options and arguments which are deduced from the
+original command ones.</p>
+
+<h4>Shortcuts</h4>
+
+<p>The four <code>ocp-*</code> commands are shortcuts for
+<code>ocp-wrapper -save-types &lt;command&gt;</code> which are useful when a
+single executable program is required as compiling command.</p>
+
+<h4>Options</h4>
+
+<ul>
+<li><code>-with-ocp-type</code>, <code>-with-ocamlc</code>, &#X2026;: allow to
+customize the <code>ocp-type</code>, <code>ocamlc</code>, &#X2026;commands which
+are run.</LI><LI CLASS="li-itemize"><code>-v</code> print the <code>ocp-type</code> command which is executed on
+stderr.</li>
+</ul>
+
+<h4>Pre-processing</h4>
+
+<p>Any <code>-pp</code> option appearing in the command line is transformed as
+follows when passed to <code>ocp-type</code>:</p>
+
+<ul>
+<li>if the pre-processor command is (a variant of) <code>camlp4</code>,
+then the option <code>-printer Camlp4AstDumper</code> is added, which
+yields more accurate location information,</li>
+<li>otherwise, the command is left unchanged.</li>
+</ul>
+
+</div>
+</div>
+
+#include "body.trailer.include"
+
+</body>
+</html>

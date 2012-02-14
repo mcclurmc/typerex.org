@@ -1,40 +1,22 @@
 <div id="header">
   <div class="top">
-   <div class="container">
-    <h1><a href="index.html" title="TypeRex">TypeRex, The OCaml Programming Studio</a></h1>
-   </div>
+   <div class="container"></div>
+   <div class="bottom"><h1><a href="index.html" title="TypeRex"></a></h1></div>
   </div>
-  <div class="bottom">&nbsp;</div>
 </div>
 
-<div id="main" class="container">
-<div class="row">
-
-<div id="leftmenu" class="span3">
-
-<h2>Menu</h2>
-<ul>
-<li><a href="news.html" title="Some news">News</a></li>
-<li><a href="features.html" title="Discover TypeRex Features">Features</a></li>
-<li><a href="screenshots.html" title="Screenshots">Screenshots</a></li>
-<li><a href="download.html" title="Install OCaml">Download</a></li>
-<li><a href="manual/" title="Manual">Manual</a></li>
-<li><a href="support.html" title="Licencing issues">Support</a></li>
-</ul>
-
-<br/>
-
-<div class="misc">
-<a href="javascript:void(PrevuImpression());" title="Print">
-<img src="images/printer.png" alt="Preview Print"></a>
-<a href="download.html">
-
-<img src="images/download.png" width="30" />
-</a>
-
+ <div class="navbar">
+   <div class="navbar-inner">
+     <div class="container">
+       <a class="brand" href="index.html">TypeRex</a>
+       <ul class="nav pull-right">
+         <li class="divider-vertical">
+         <li><a href="download.html">Download</a></li>
+         <li><a href="manual-index.html">Manual</a></li>
+         <li><a href="support.html">Support</a></li>
+       </ul>
+    </div>
+  </div>
 </div>
 
-</div>
-
-<div class="span7">
-<div class="content">
+<div class="container">
