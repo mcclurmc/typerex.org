@@ -19,20 +19,23 @@
    <div class="bottom"><h1><a href="index.html" title="TypeRex"></a></h1></div>
   </div>
 </div>
- <div class="navbar">
+ <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
        <a class="brand" href="index.html">TypeRex</a>
        <ul class="nav pull-right">
-         <li class="divider-vertical">
          <li><a href="index.html">Home</a></li>
+         <li class="divider-vertical">
          <li><a href="download.html">Download</a></li>
          <li><a href="manual-index.html">Manual</a></li>
          <li><a href="support.html">Support</a></li>
+         <li class="divider-vertical">
+         <li><a href="faq.html">FAQ</a></li>
        </ul>
     </div>
   </div>
 </div>
+<div class="content">
 <div class="container">
 <div class="row">
 <div class="span3">
@@ -42,8 +45,8 @@
 <li><a href="manual-setup.html">Installation</a>
  <ul class="subsection">
   <li><a href="manual-setup.html#download">Download</a></li>
-  <li><a href="manual-setup.html#configuration">Configuration</a></li>
   <li><a href="manual-setup.html#installation">Installation</a></li>
+  <li><a href="manual-setup.html#configuration">Configuration</a></li>
  </ul></li>
 <li><a href="manual-ide.html">IDE</a>
  <ul class="subsection">
@@ -56,11 +59,10 @@
   <li><a href="manual-ide.html#recovery">Recovery</a></li>
  </ul>
 <li><a href="manual-tools.html">Tools</a></li>
-<li><a href="manual-faq.html">FAQ</a></li>
 </ul>
 </div>
 </div>
-<div class="span9">
+<div class="offset3 span9">
 <h1>TypeRex development environment for Emacs</h1>
 <p>This chapter explains how to enable and use the TypeRex environment
 for editing an OCaml program.</p>
@@ -228,9 +230,7 @@ only be undone with &#X201C;C-o u&#X201D;. A call to &#X201C;C-o u&#X201D; is al
 onto the local undo lists of all modified buffers for convenience,
 so that (C-_) will also work.</li>
 </ul>
-
 <h3>Multiple-file undo (C-o u)</h3>
-
 <p>Undo the last multiple-file modification. Warning! This discards any
 subsequent modification of the affected files (a confirmation is asked
 in this case). All buffers editing one of the affected files are
@@ -427,6 +427,7 @@ installed by default).</p>
 </div>
 </div>
 </div>
+</div>
 <div class="footer">
   <div class="container">
    <div class="rows">
@@ -436,6 +437,7 @@ installed by default).</p>
         <li><a href="index.html">Overview</a></li>
         <li><a href="download.html">Download</a></li>
         <li><a href="support.html">Support</a></li>
+        <li><a href="faq.html">FAQ</a></li>
      </ul>
     </div>
     <div class="span3">
@@ -445,16 +447,13 @@ installed by default).</p>
         <li><a href="manual-setup.html">Installation</a></li>
         <li><a href="manual-ide.html">IDE</a></li>
         <li><a href="manual-tools.html">Tools</a></li>
-        <li><a href="manual-faq.html">FAQ</a></li>
       </ul>
     </div>
    </div>
   </div>
-</div>
 <div class="container">
  <div class="contribute">
    This website is edited by <a href="http://www.ocamlpro.com/">OCamlPro</a>.
-   <br/>
    You can contribute information by cloning the project on
    <a href="https://www.github.com/OCamlPro/typerex.org">github</a>.
  </div>
