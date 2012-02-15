@@ -11,6 +11,7 @@
        <a class="brand" href="index.html">TypeRex</a>
        <ul class="nav pull-right">
          <li class="divider-vertical">
+         <li><a href="index.html">Home</a></li>
          <li><a href="download.html">Download</a></li>
          <li><a href="manual-index.html">Manual</a></li>
          <li><a href="support.html">Support</a></li>
