@@ -6,8 +6,8 @@
 <li><a href="manual-setup.html">Installation</a>
  <ul class="subsection">
   <li><a href="manual-setup.html#download">Download</a></li>
-  <li><a href="manual-setup.html#configuration">Configuration</a></li>
   <li><a href="manual-setup.html#installation">Installation</a></li>
+  <li><a href="manual-setup.html#configuration">Configuration</a></li>
  </ul></li>
 <li><a href="manual-ide.html">IDE</a>
  <ul class="subsection">
@@ -20,9 +20,8 @@
   <li><a href="manual-ide.html#recovery">Recovery</a></li>
  </ul>
 <li><a href="manual-tools.html">Tools</a></li>
-<li><a href="manual-faq.html">FAQ</a></li>
 </ul>
 </div>
 </div>
 
-<div class="span9">
+<div class="offset3 span9">

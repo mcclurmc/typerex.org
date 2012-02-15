@@ -26,20 +26,24 @@
   </div>
 </div>
 
- <div class="navbar">
+ <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
        <a class="brand" href="index.html">TypeRex</a>
        <ul class="nav pull-right">
+         <li><a href="index.html">Overview</a></li>
          <li class="divider-vertical">
          <li><a href="download.html">Download</a></li>
          <li><a href="manual-index.html">Manual</a></li>
          <li><a href="support.html">Support</a></li>
+         <li class="divider-vertical">
+         <li><a href="faq.html">FAQ</a></li>
        </ul>
     </div>
   </div>
 </div>
 
+<div class="content">
 <div class="container">
 <div class="row">
 <div class="span3">
@@ -49,8 +53,8 @@
 <li><a href="manual-setup.html">Installation</a>
  <ul class="subsection">
   <li><a href="manual-setup.html#download">Download</a></li>
-  <li><a href="manual-setup.html#configuration">Configuration</a></li>
   <li><a href="manual-setup.html#installation">Installation</a></li>
+  <li><a href="manual-setup.html#configuration">Configuration</a></li>
  </ul></li>
 <li><a href="manual-ide.html">IDE</a>
  <ul class="subsection">
@@ -63,12 +67,11 @@
   <li><a href="manual-ide.html#recovery">Recovery</a></li>
  </ul>
 <li><a href="manual-tools.html">Tools</a></li>
-<li><a href="manual-faq.html">FAQ</a></li>
 </ul>
 </div>
 </div>
 
-<div class="span9">
+<div class="offset3 span9">
 
 <h1>TypeRex setup</h1>
 
@@ -98,7 +101,7 @@ TypeRex.</p>
 <a href="http://www.ocamlpro.com/typerex/files">
 <tt>http://www.ocamlpro.com/typerex/files</tt></a>.</p>
 
-<h2><a name="configuration"></a>Installation</h2>
+<h2><a name="installation"></a>Installation</h2>
 
 <h3>Build configuration</h3>
 
@@ -146,7 +149,7 @@ non-standard settings and to fine-tune various TypeRex options.</p>
 <code>*Messages*</code> buffer. If you see the line &#X201C;Connection
 established with TypeRex server&#X201D;, the installation is OK.</p>
 
-<h2><a name="configuration"></A>TypeRex configuration (optional)</h2>
+<h2><a name="configuration"></a>TypeRex configuration (optional)</h2>
 
 <p>The following additional configuration is done through Emacs
 customizable variables, and can be changed in two ways:</p>
@@ -294,6 +297,7 @@ directory:</p>
 </div>
 
 </div>
+</div>
 
 <div class="footer">
   <div class="container">
@@ -305,6 +309,7 @@ directory:</p>
         <li><a href="index.html">Overview</a></li>
         <li><a href="download.html">Download</a></li>
         <li><a href="support.html">Support</a></li>
+        <li><a href="faq.html">FAQ</a></li>
      </ul>
     </div>
 
@@ -315,17 +320,15 @@ directory:</p>
         <li><a href="manual-setup.html">Installation</a></li>
         <li><a href="manual-ide.html">IDE</a></li>
         <li><a href="manual-tools.html">Tools</a></li>
-        <li><a href="manual-faq.html">FAQ</a></li>
       </ul>
     </div>
 
    </div>
   </div>
-</div>
+
 <div class="container">
  <div class="contribute">
    This website is edited by <a href="http://www.ocamlpro.com/">OCamlPro</a>.
-   <br/>
    You can contribute information by cloning the project on
    <a href="https://www.github.com/OCamlPro/typerex.org">github</a>.
  </div>

@@ -2,26 +2,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 #include "head.include"
-   <title>TypeRex</title>
+   <title>TypeRex FAQ</title>
 </head>
 <body>
 
 #include "body.header.include"
-#include "body.manual-index.include"
 
-<h1>Common issues and questions</h1>
+<div class="row">
 
-<h2>General</h2>
+<div class="span3">
+<div class="well sidebar-nav">
+<ul class="nav nav-list">
+<li><a href="#general">General questions</a></li>
+<li><a href="#setup">Project setup</a></li>
+<li><a href="#browsing">Browsing, refactoring</a></li>
+<li><a href="#coloring">Syntax coloring</a></li>
+<li><a href="#completion">Auto-completion</a></li>
+</ul>
+</div>
+</div>
+
+<div class="offset3 span9">
+<h1></a>Common issues and questions</h1>
+
+<h2><a name="#general"></a>General</h2>
 
 <h4>Reporting bugs</h4>
 
-<p>Bugs reports should be sent through the issue tracker at
-<a href="https://github.com/OCamlPro/typerex/issues">
-<tt>https://github.com/OCamlPro/typerex/issues</tt></a> (or by mail). If the
-problem is an uncaught exception (of the form &#X201C;Error:&#X2026;&#X201D;), make
-sure to provide the full backtrace (available in the <code>*Messages*</code>
-buffer). In addition to the action which triggered the problem, an
-accurate description of your code (and configuration) will be helpful,
+<p>Bugs reports should be sent through
+the <a href="https://github.com/OCamlPro/typerex/issues">github</a>
+issue tracker. If the problem is an uncaught exception (of the form
+&#X201C;Error:&#X2026;&#X201D;), make sure to provide the full
+backtrace (available in the <code>*Messages*</code> buffer). In
+addition to the action which triggered the problem, an accurate
+description of your code (and configuration) will be helpful,
 especially for a wrong result (for example, incomplete).</p>
 
 <h4>What about other editors and operating systems</h4>
@@ -49,7 +63,7 @@ pattern matching (as was proposed in OcamlWizard and the latest
 version of OCamlSpotter), but it is already quite accurate and
 responsive on identifiers defined in other modules.</p>
 
-<h2>Project setup / building annotations</h2>
+<h2><a name="setup"></a>Project setup / building annotations</h2>
 
 <h4>Findlib configuration does not work</h4>
 
@@ -82,7 +96,7 @@ are not yet supported. Furthermore, generated files (other than
 ocamllex/ocamlyacc) are not detected, so don&#X2019;t expect a fully
 automatic renaming of <code>List.iter</code> yet.</p>
 
-<h2>Browsing and refactoring</h2>
+<h2><a name="browsing"></a>Browsing and refactoring</h2>
 
 <h4>{module, value, &#X2026;} x not found [in load-path]</h4>
 
@@ -111,7 +125,7 @@ possible auto-save files (<code>#file.ml#</code>) from older sessions will
 confuse TypeRex, if they are more recent than the file itself. In
 this case you should delete them.</p>
 
-<h2>Syntax coloring</h2>
+<h2><a name="coloring"></a>Syntax coloring</h2>
 
 <h4>Coloring is sometimes inaccurate</h4>
 
@@ -121,7 +135,7 @@ work for syntaxically incorrect buffers). This solution is not perfect
 and also suffers from some thresholds which are introduced to keep it
 responsive enough.</p>
 
-<h2>Auto completion</h2>
+<h2><a name="completion"></a>Auto completion</h2>
 
 <h4>Completion is inaccurate for definitions in the current buffer</h4>
 
