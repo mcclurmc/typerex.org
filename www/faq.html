@@ -15,7 +15,7 @@
   <script src="js/transition.js" type="text/javascript"></script>
   <script src="js/bootstrap-carousel.js" type="text/javascript"></script>
   <script src="js/main.js" type="text/javascript"></script>
-   <title>TypeRex</title>
+   <title>TypeRex FAQ</title>
 </head>
 <body>
 
@@ -31,10 +31,12 @@
      <div class="container">
        <a class="brand" href="index.html">TypeRex</a>
        <ul class="nav pull-right">
+         <li><a href="index.html">Overview</a></li>
          <li class="divider-vertical">
          <li><a href="download.html">Download</a></li>
          <li><a href="manual-index.html">Manual</a></li>
          <li><a href="support.html">Support</a></li>
+         <li class="divider-vertical">
          <li><a href="faq.html">FAQ</a></li>
        </ul>
     </div>
@@ -43,48 +45,35 @@
 
 <div class="content">
 <div class="container">
+
 <div class="row">
+
 <div class="span3">
 <div class="well sidebar-nav">
 <ul class="nav nav-list">
-<li><a href="manual-index.html">Overview</a></li>
-<li><a href="manual-setup.html">Installation</a>
- <ul class="subsection">
-  <li><a href="manual-setup.html#download">Download</a></li>
-  <li><a href="manual-setup.html#configuration">Configuration</a></li>
-  <li><a href="manual-setup.html#installation">Installation</a></li>
- </ul></li>
-<li><a href="manual-ide.html">IDE</a>
- <ul class="subsection">
-  <li><a href="manual-ide.html#setup">Setup</a></li>
-  <li><a href="manual-ide.html#browsing">Browsing</a></li>
-  <li><a href="manual-ide.html#refactoring">Refactoring</a></li>
-  <li><a href="manual-ide.html#coloring">Coloring</a></li>
-  <li><a href="manual-ide.html#completion">Completion</a></li>
-  <li><a href="manual-ide.html#assumptions">Assumptions</a></li>
-  <li><a href="manual-ide.html#recovery">Recovery</a></li>
- </ul>
-<li><a href="manual-tools.html">Tools</a></li>
-<li><a href="manual-faq.html">FAQ</a></li>
+<li><a href="#general">General questions</a></li>
+<li><a href="#setup">Project setup</a></li>
+<li><a href="#browsing">Browsing, refactoring</a></li>
+<li><a href="#coloring">Syntax coloring</a></li>
+<li><a href="#completion">Auto-completion</a></li>
 </ul>
 </div>
 </div>
 
-<div class="span9">
+<div class="offset3 span9">
+<h1></a>Common issues and questions</h1>
 
-<h1>Common issues and questions</h1>
-
-<h2>General</h2>
+<h2><a name="#general"></a>General</h2>
 
 <h4>Reporting bugs</h4>
 
-<p>Bugs reports should be sent through the issue tracker at
-<a href="https://github.com/OCamlPro/typerex/issues">
-<tt>https://github.com/OCamlPro/typerex/issues</tt></a> (or by mail). If the
-problem is an uncaught exception (of the form &#X201C;Error:&#X2026;&#X201D;), make
-sure to provide the full backtrace (available in the <code>*Messages*</code>
-buffer). In addition to the action which triggered the problem, an
-accurate description of your code (and configuration) will be helpful,
+<p>Bugs reports should be sent through
+the <a href="https://github.com/OCamlPro/typerex/issues">github</a>
+issue tracker. If the problem is an uncaught exception (of the form
+&#X201C;Error:&#X2026;&#X201D;), make sure to provide the full
+backtrace (available in the <code>*Messages*</code> buffer). In
+addition to the action which triggered the problem, an accurate
+description of your code (and configuration) will be helpful,
 especially for a wrong result (for example, incomplete).</p>
 
 <h4>What about other editors and operating systems</h4>
@@ -112,7 +101,7 @@ pattern matching (as was proposed in OcamlWizard and the latest
 version of OCamlSpotter), but it is already quite accurate and
 responsive on identifiers defined in other modules.</p>
 
-<h2>Project setup / building annotations</h2>
+<h2><a name="setup"></a>Project setup / building annotations</h2>
 
 <h4>Findlib configuration does not work</h4>
 
@@ -145,7 +134,7 @@ are not yet supported. Furthermore, generated files (other than
 ocamllex/ocamlyacc) are not detected, so don&#X2019;t expect a fully
 automatic renaming of <code>List.iter</code> yet.</p>
 
-<h2>Browsing and refactoring</h2>
+<h2><a name="browsing"></a>Browsing and refactoring</h2>
 
 <h4>{module, value, &#X2026;} x not found [in load-path]</h4>
 
@@ -174,7 +163,7 @@ possible auto-save files (<code>#file.ml#</code>) from older sessions will
 confuse TypeRex, if they are more recent than the file itself. In
 this case you should delete them.</p>
 
-<h2>Syntax coloring</h2>
+<h2><a name="coloring"></a>Syntax coloring</h2>
 
 <h4>Coloring is sometimes inaccurate</h4>
 
@@ -184,7 +173,7 @@ work for syntaxically incorrect buffers). This solution is not perfect
 and also suffers from some thresholds which are introduced to keep it
 responsive enough.</p>
 
-<h2>Auto completion</h2>
+<h2><a name="completion"></a>Auto completion</h2>
 
 <h4>Completion is inaccurate for definitions in the current buffer</h4>
 
