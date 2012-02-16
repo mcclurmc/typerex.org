@@ -15,9 +15,7 @@ $(function(){
 
 // carousel
 $(function(){
-  $(".carousel").carousel();
-  $(".carousel").find(".left").click(function () { $(".carousel").carousel('prev') });
-  $(".carousel").find(".right").click(function () { $(".carousel").carousel('next') });
+  $("#screenshots").carousel();
 })
 
 // fix anchor issues due to fix navbar
