@@ -90,11 +90,20 @@ coloring does not require any annotation at all, of course.</p>
 into the main directory, and run
 <code>patch -p0 -i ocaml-typerex.patch</code>, then rebuild the compiler
 starting from the standard library (mandatory): <code>make clean</code>,
-<code>make world</code>, &#X2026;Please note that only the compilers are annotated (with most of the
-stdlib, but not dynlink), and not camlp4 and ocamlbuild, because packs
-are not yet supported. Furthermore, generated files (other than
-ocamllex/ocamlyacc) are not detected, so don&#X2019;t expect a fully
-automatic renaming of <code>List.iter</code> yet.</p>
+<code>make world</code>, &#X2026;
+Please note the following limitations:
+<ul>
+<li><code>ocp-type</code> will fail on camlp4 except for version 3.12.1
+  (for binary compatibility reasons). This does not impact the use of
+  TypeRex for the remaining of the compiler.</li>
+<li>Including Camlp4 in the program is currently not possible.</li>
+<li>Generated files (other than ocamllex/ocamlyacc) are not
+  detected, so don't expect a fully automatic renaming of <em>e.g.</em>
+  <code>List.iter</code>.</li>
+<li>The <code>Dynlinkaux</code> pack module is not correctly understood by
+  TypeRex (because its components are in another directory).</li>
+<ul></p>
+
 
 <h2><a name="browsing"></a>Browsing and refactoring</h2>
 
@@ -114,11 +123,15 @@ should be correctly invalidated on a cmt file basis).</p>
 <h4>&#X201C;Goto definition&#X201D; fails, but &#X201C;Grep&#X201D; finds the definition</h4>
 
 <p>This is expected if the identifier comes from, for example, an
-included module (more generally if the identifiers is internally
-renamed by the OCaml compiler during type inference). The grep (or
-renaming) algorithm takes these renamings into account to collect the
-full set of relevant identifiers, so it is currently more powerful.</P><H4 CLASS="subsubsection">Locations are shifted, TypeRex complains about unsaved files</H4><P>
-TypeRex uses the Emacs auto-save mechanism to know about modified
+ included module, or a pack module (more generally if the identifier
+ is internally renamed by the OCaml compiler during type
+ inference). The grep (or renaming) algorithm takes these renamings
+ into account to collect the full set of relevant identifiers, so it is
+ currently more powerful.</p>
+
+<h4>Locations are shifted, TypeRex complains about unsaved files</h4>
+
+<p>TypeRex uses the Emacs auto-save mechanism to know about modified
 buffers, so that it can usually re-align shifted positions
 correctly. This is not a perfect solution though, and in particular,
 possible auto-save files (<code>#file.ml#</code>) from older sessions will
