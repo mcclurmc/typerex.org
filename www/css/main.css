@@ -1,3 +1,33 @@
+h2 {
+   padding-top: 25px;
+   padding-bottom: 20px;
+}
+
+h3 {
+   padding-top: 20px;
+   padding-bottom: 15px;
+}
+
+.index h3, .index h2 {
+   padding-top: 0px;
+}
+
+.index h3 .big {
+   font-size: 24px;
+}
+
+.right {
+       text-align: right;
+}
+
+h4 {
+   padding-bottom: 10px;
+}
+
+h5 {
+   padding-bottom: 5px;
+}
+
 .footer {
 	color: black;
 	background-color: white;
