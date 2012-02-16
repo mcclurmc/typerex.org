@@ -4,7 +4,7 @@ $(function(){
   positionFooter();
   function positionFooter(){
     if($(document).height() <= $(window).height()) {
-      var x = $(window).height() - h - 145;
+      var x = $(window).height() - h - 142;
       $(".content").css("min-height", x + "px");
     };
   };
