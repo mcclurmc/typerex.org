@@ -47,3 +47,9 @@ $(function(){
   $(".nochildren").children("ul").hide();
 })
 
+// show images
+$(function(){
+  $(".thumbnails img").each(function(m,i){
+          $(i).click(function(){window.open($(i).attr("src"))}); 
+  })
+})
