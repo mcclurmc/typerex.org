@@ -101,6 +101,15 @@ require restarting Emacs to become effective, or at least running
 <code>M-x ocp-restart-server</code>.</li>
 </ul>
 
+<h3>TypeRex contextual menu</h3>
+
+<p>The contextual menu can be enabled when right-cliking ; it offers the
+same actions as the keyboard shortcuts.
+<pre>
+    ;; Uncomment to enable typerex command menu by right click
+    (setq ocp-menu-trigger [mouse-3])
+</pre></p>
+
 <h3>TypeRex syntax coloring</h3>
 
 <p>By default, TypeRex proposes a new syntax coloration for OCaml source files.
@@ -115,20 +124,16 @@ require restarting Emacs to become effective, or at least running
 <p>A (still very primitive) contextual identifier completion feature is
 provided, relying on the Emacs Auto Complete Mode written by Tomohiro
 Matsuyama. It can be enabled by uncommenting the following lines in
-<tt>.emacs</tt>:
+<code>.emacs</code>:</p>
 
 <pre>
     ;; AutoComplete
     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/auto-complete-mode")
-    (require 'auto-complete-config)
-    (add-to-list 'ac-dictionary-directories
-                 "/usr/local/share/emacs/site-lisp/auto-complete-mode/ac-dict")
-    ;; To disable auto-completion, comment out the following lines:
     (ac-config-default)
     (setq ocp-auto-complete t)
 
-    ;; Comment out to allow auto-complete for all supported modes:
-    (setq ac-modes '(typerex-mode))
+    ;; Using <`> to complete whatever the context, and <C-`> for `
+    (setq auto-complete-keys 'ac-keys-backquote-backslash)
 
     ;; I want immediate menu pop-up
     (setq ac-auto-show-menu 0.)
@@ -139,52 +144,55 @@ Matsuyama. It can be enabled by uncommenting the following lines in
     ;; Uncomment to disable help showing
     ;;(setq ac-use-quick-help nil)
 
-    ;; Number of characters required to start
+    ;; Number of characters required to start (nil to disable)
     (setq ac-auto-start 0)
+</pre>
+
+<p>If you like auto-completion, you can enable it for all supported modes
+(using dictionaries):</p>
+
+<pre>
+    ;; Uncomment to enable auto complete mode globally (independently of OCaml)
+    (require 'auto-complete-config)
+    (add-to-list 'ac-dictionary-directories
+                 "/usr/local/share/emacs/site-lisp/auto-complete-mode/ac-dict")
+    (ac-config-default)
 </pre>
 
 <b>Warning!</b> Do not set a black background using <code>M-x
   invert-face default</code> when using auto-completion ; instead,
   start Emacs with <code>emacs -r</code>.</p>
 
-<p>Changing the default keys and behavior can be useful to fit the
-user&#X2019;s habits. For example, the following keeps normal behavior
-of <code>TAB</code>, <code>RET</code>, <code>&lt;up&gt;</code>,
-and <code>&lt;down&gt;</code>, and uses
-respectively <code>&lt;`&gt;</code>, <code>&lt;\&gt;</code>, <code>&lt;C-p&gt;</code>
-and <code>&lt;C-up&gt;</code> instead, remapping <code>'`'</code>
-to <code>&lt;C-`&gt;</code>.</p>
+<h4>Auto completion keys</h4>
+
+<p>Changing the default keys and behavior can be useful to fit the user's
+habits. For example, the provided configuration
+<code>'ac-keys-backquote-backslash</code> keeps normal behavior of
+<code>TAB</code>, <code>RET</code>, <code>&lt;up></code>, and <code>&lt;down></code>, 
+and uses respectively <code>&lt;`></code>, <code>&lt;\></code>, <code>&lt;C-p></code>
+ and <code>&lt;C-up></code>
+ instead, remapping <code>'`'</code> to <code>&lt;C-`></code>.</p>
+
+<p>On some keyboards, <code>&lt;<sup>2</sup>></code> and <code>&lt;$></code> may be more
+appropriate than <code>&lt;`></code>, <code>&lt;\></code>. This is achieved by setting
+<code>auto-complete-keys</code> to <code>ac-keys-two-dollar</code>.</p>
+
+<p>Setting <code>auto-complete-keys</code> to <code>nil</code> will use the default
+auto-complete configuration, that is, with <code>TAB</code>, <code>RET</code>,
+<code>&lt;up></code>, and <code>&lt;down></code>.  Alternatively, one may want to use
+all standard keys, but with auto-start disabled and using a specific
+trigger key.</p>
 
 <pre>
-    ;; AutoComplete keymap:
-    (define-key ac-mode-map "`" 'auto-complete)
-    ;; Workaround a bug in auto complete mode:
-    (add-hook 'auto-complete-mode-hook
-              (lambda () (define-key (current-global-map) "`" nil)))
-    (define-key ac-mode-map [?\C-`] (lambda () (interactive) (insert "`")))
-    (define-key ac-completing-map "\\" 'ac-complete)
-    (define-key ac-completing-map "\C-n" 'ac-next)
-    (define-key ac-completing-map "\C-p" 'ac-previous)
-    (define-key ac-completing-map "\r" nil)
-    (define-key ac-completing-map "\t" nil)
-    (define-key ac-completing-map [up] nil)
-    (define-key ac-completing-map [down] nil)
-</pre>
-
-<p>On some keyboards, <code>&lt;</code><SUp>2</SUp><code>&gt;</code>
-and <code>&lt;$&gt;</code> may be more appropriate
-than <code>&lt;`&gt;</code>, <code>&lt;\&gt;</code>. Another
-alternative is <code>&lt;C-tab&gt;</code>.</p><p>Alternatively, one
-may want to use all standard keys, but with auto-start disabled and
-using a specific trigger key.</p>
-
-<pre>
-    ;; AutoComplete keymap: standard keys (RET - TAB), but no auto-start
+    ;; Standard keys but starting only with C-TAB, and no auto-start
     (setq ac-auto-start nil)
-    (define-key ac-mode-map (kbd "&lt;C-tab&gt;") 'auto-complete)
 </pre>
 
-<p>See the Auto Complete Mode user manual for more details on
+<p>Finally, you can also define a customized
+<code>'ac-keys-&hellip;</code> function by looking at the implementation of
+predefined ones, or set the auto-complete configuration variables
+directly, but then make sure to set <code>auto-complete-keys</code> to
+<code>nil</code>. See the Auto Complete Mode user manual for more details on
 the corresponding configuration.</p>
 
 <h3>Reconfiguring paths</H3>
