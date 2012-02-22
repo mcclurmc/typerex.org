@@ -105,7 +105,7 @@ access to the source code) will enable comment showing. Syntax
 coloring does not require any annotation at all, of course.</p>
 <h4>How to enable TypeRex for developping the OCaml compiler</h4>
 <p>Just copy
-<a href="http://www.ocamlpro.com/typerex/doc/ocaml-typerex.patch">this patch</a>
+<a href="http://www.typerex.org/pub/ocaml-typerex.patch">this patch</a>
 into the main directory, and run
 <code>patch -p0 -i ocaml-typerex.patch</code>, then rebuild the compiler
 starting from the standard library (mandatory): <code>make clean</code>,
@@ -158,8 +158,17 @@ responsive enough.</p>
 <p>The current implementation of completion is semantic for external
 compilation units (i.e., with a .cmt(i) or .cmi, but only lexical for
 the current buffer, so this is expected.</p>
-<h4>Completion is slow for large files</h4>
-<p>This feature is still experimental, and will improve.</p>
+<h4>Completion stops working</h4>
+We still have to spot the cause of this problem. Reverting the current
+buffer with <code>M-x revert-buffer</code> (after saving the file, of
+course) should bring it back.
+<h4>Emacs deadlocks</h4>
+
+This is a known bug, which sometimes happen when typing during a
+buffer's initialization. The solution is to run
+<code>killall ocp-wizard</code> to kill the TypeTex server process (which
+unlocks Emacs) and then restart it from the TypeRex menu.
+
 </div>
 </div>
 </div>
