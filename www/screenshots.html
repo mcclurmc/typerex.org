@@ -10,40 +10,99 @@
   <script src="js/transition.js" type="text/javascript"></script>
   <script src="js/bootstrap-carousel.js" type="text/javascript"></script>
   <script src="js/main.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22552764-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
    <title>TypeRex Screenshots</title>
 </head>
-<body id="Screen">
-<div id="header">
-  <div class="top">
-   <div class="container"></div>
-   <div class="bottom"><h1><a href="index.html" title="TypeRex"></a></h1></div>
-  </div>
-</div>
- <div class="navbar">
+<body>
+ <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
        <a class="brand" href="index.html">TypeRex</a>
        <ul class="nav pull-right">
-         <li class="divider-vertical">
          <li><a href="index.html">Home</a></li>
+         <li class="divider-vertical">
          <li><a href="download.html">Download</a></li>
+         <li><a href="screenshots.html">Screenshots</a></li>
          <li><a href="manual-index.html">Manual</a></li>
          <li><a href="support.html">Support</a></li>
+         <li class="divider-vertical">
+         <li><a href="faq.html">FAQ</a></li>
        </ul>
     </div>
   </div>
 </div>
+<div class="content">
 <div class="container">
 <h1>Screenshots</h1>
-<img src="files/coloring.png" width="400" />
-<img src="files/command-menu.png" width="400" />
-<img src="files/comment-definition.png" width="400" />
-<img src="files/completion.png" width="400" />
-<img src="files/grep_Texp_for.png" width="400" />
-<img src="files/renaming.png" width="400" />
-<img src="files/text-menu.png" width="400" />
-<img src="files/typerex-menu.png" width="400" />
-<img src="files/undo.png" width="400" />
+<ul class="thumbnails">
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/coloring.png" alt="">
+      <h5>Coloring</h5>
+      <p>Improved syntax coloring, smarter incremental treatment of strings and comments</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/typerex-menu.png" alt="">
+      <h5>TypeRex menu</h5>
+      <p>The main TypeRex menu (also providing the most useful Tuareg commands)</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/command-menu.png" alt="">
+      <h5>Command menu</h5>
+      <p>Contextual menu with all TypeRex actions</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/comment-definition.png" alt="">
+      <h5>Describing identifiers</h5>
+      <p>Immediate access to identifiers' comments and detailed typing information</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/grep_Texp_for.png" alt="">
+      <h5>Semantic grep</h5>
+      <p>Powerful "semantic grep" feature for all OCaml identifiers</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/renaming.png" alt="">
+      <h5>Renaming</h5>
+      <p>Consistent, global renaming of identifiers, correct w.r.t. scopes and the module system...</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/undo.png" alt="">
+      <h5>Undo</h5>
+      <p>Consistent, safe undoing of multiple-files modifications</p>
+  </div>
+  </li>
+  <li class="span3">
+  <div class="thumbnail">
+  <img src="files/pack-modules.png" alt="">
+      <h5>Packs</h5>
+      <p>Supports module packing with very little configuration (expperimental)</p>
+  </div>
+  </li>
+</ul>
+</div>
 </div>
 <div class="footer">
   <div class="container">
@@ -54,6 +113,7 @@
         <li><a href="index.html">Overview</a></li>
         <li><a href="download.html">Download</a></li>
         <li><a href="support.html">Support</a></li>
+        <li><a href="faq.html">FAQ</a></li>
      </ul>
     </div>
     <div class="span3">
@@ -63,16 +123,13 @@
         <li><a href="manual-setup.html">Installation</a></li>
         <li><a href="manual-ide.html">IDE</a></li>
         <li><a href="manual-tools.html">Tools</a></li>
-        <li><a href="manual-faq.html">FAQ</a></li>
       </ul>
     </div>
    </div>
   </div>
-</div>
 <div class="container">
  <div class="contribute">
    This website is edited by <a href="http://www.ocamlpro.com/">OCamlPro</a>.
-   <br/>
    You can contribute information by cloning the project on
    <a href="https://www.github.com/OCamlPro/typerex.org">github</a>.
  </div>
