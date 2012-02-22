@@ -1,16 +1,11 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/main.css" />
-
   <meta name="keywords"
   content="Objective-Caml,Objective,Caml,Ocaml,compilers,patches,caml-light,sml,haskell,scheme,lisp,functional,languages,ocamlc,ocamlopt,cmo,cmx,cma,platform,development,open-source,free-software,native" />
-
   <script src="js/jquery.min.js" type="text/javascript"></script>
   <script src="js/transition.js" type="text/javascript"></script>
   <script src="js/bootstrap-carousel.js" type="text/javascript"></script>
@@ -29,7 +24,6 @@
    <title>TypeRex</title>
 </head>
 <body>
-
  <div class="navbar navbar-fixed-top">
    <div class="navbar-inner">
      <div class="container">
@@ -46,7 +40,6 @@
     </div>
   </div>
 </div>
-
 <div class="content">
 <div class="container">
 <div class="row">
@@ -78,119 +71,84 @@
 </ul>
 </div>
 </div>
-
 <div class="offset3 span9">
-
 <h1>TypeRex development environment for Emacs</h1>
-
 <p>This chapter explains how to enable and use the TypeRex environment
 for editing an OCaml program.</p>
-
-
 <h2><a name="setup"></a>TypeRex environment setup</h2>
-
 <p>Using the TypeRex environment for an OCaml project requires two
 configuration steps: ensuring the generation of required binary
 annotations, and providing a minimal description of the project&#X2019;s
 paths. Those steps are detailed in the following.</p>
-
 <h3>Generating .cmt(i) files</h3>
-
 <p>The most simple way of generating binary annotations is to setup your
 build process to use the provided <code>ocp-*</code> versions of the OCaml
 compilers, for example <code>ocp-ocamlc.opt</code> instead of
 <code>ocamlc.opt</code>. These are wrappers which behave as the original
 compilers, but additionally run <code>ocp-type</code> on the sources.</p>
-
 <p>In some cases, a more expressive solution is required which
 consists in prefixing the compiler commands with
 <code>ocp-wrapper -save-types</code> with specific arguments (see chapter
 <a href="manual-tools.html">Tools</a> for more details).</p>
-
 <p>Here are examples of how to achieve this depending on your build system.</p>
-
 <h4>make</h4>
-
 <p>Use as compiler a variable defined by
-
 <pre>
         OCAMLC=ocp-ocamlc.opt
 or
         OCAMLC=ocp-wrapper -save-types [&lt;other options&gt;] ocamlc.opt
 </pre></p>
-
 <h4>ocamlbuild</h4>
-
 <p>Add
-
 <pre>
         Options.ocamlc := S [ A "ocp-ocamlc"]
 or
         Options.ocamlc := S [ A"ocp-wrapper"; A"-save-types"; ... ;
         A"ocamlc"]
 </pre>
-
 to your <code>myocamlbuild.ml</code> file.</p>
-
 <h4>ocamlfind (without ocamlbuild)</h4>
-
 <p>Add
-
 <pre>
         ocamlc = "ocp-ocamlc.opt"
 or
         ocamlc(typerex) = "ocp-ocamlc.opt"
 </pre>
-
 to your <code>/etc/findlib.conf</code> (or <code>ocamlfind.conf</code>,
 or the file pointed to by <code>$OCAMLFIND_CONF</code>). The first
 option tells <code>ocamlfind</code> to use <code>ocp-wrapper</code> globally ; the
 second defines a tool-chain "typerex" which you then specify by calling
 <code>ocamlfind -toolchain typerex ocamlc</code></p>
-
-
 <h4>Using a separate build process</h4>
-
 <p>Alternatively, ocp-type provides a file Makefile.ocp-type.template,
 which is able to perform the ocp-type compilation automatically for
 simple projects.</p>
-
 <h3<a name="configuration">Project configuration</a></h3>
-
 <p>Most functionalities of TypeRex rely on some knowledge of the
 edited program (source files, libraries) which should be
 specified in one of the following ways.</p>
-
 <h4>.typerex file</h4>
-
 <p>TypeRex may use a very simple configuration file to know about a
 project&#X2019;s directories and libraries. When it is invoked on a source file
 <code>&lt;file.ml&gt;</code>, it looks for file <code>.typerex</code>
 in the directory containing <code>&lt;file.ml&gt;</code>, or its
 parent directories, back to the file system&#X2019;s root.</p>
-
 <p>This file should specify the set of directories to search for OCaml
   source files, and the set of directories to include in the load path
 (<em>i.e.</em>, libraries). It is also possible to exclude some source
 files or whole compilation units.</p>
-
 <p>The syntax of the <code>.typerex</code> file is as follows:
-
 <pre>
-        &lt;project file&gt; := &lt;line&gt;* // file must end with a newline
-
-        &lt;line&gt; := &lt;dirs&gt;     // add all contained source files (non-recursive)
-                | I&lt;dirs&gt;    // include &lt;dirs&gt; as external libraries
-                             // +&lt;dir&gt; means &lt;stdlib&gt;/&lt;dir&gt;
-                | -&lt;files&gt;   // ignore these source files
-                | CMT &lt;dir&gt;  // search .cmt(i)s here instead of in source dir
-                | NOSTDLIB   // do not include the standard library path
+        &lt;project file&gt; := &lt;line&gt;*
+        &lt;line&gt; := &lt;dirs&gt;
+                | I&lt;dirs&gt;
+                | -&lt;files&gt;
+                | CMT &lt;dir&gt;
+                | NOSTDLIB
                 | #&lt;comment&gt;
-
         &lt;dirs&gt; := white-space-separated list of directories
         &lt;files&gt; := white-space-separated list of .ml, .mli, .mll, and .mly files
 </pre>
-
 Relative directory names are interpreted with respect to the directory
 containing the project file <code>.typerex</code>, and the project
 directory itself may be denoted by &#X2019;.&#X2019;, but the
@@ -200,14 +158,12 @@ that <code>-&lt;prefix&gt;</code> is a shorthand
 for <code>-&lt;prefix&gt;.ml &lt;prefix&gt;.mli ...</code>
 See <code>.typerex</code> in the TypeRex root directory for an
 example.</p>
-
 <p><b>Meaning of project and library directories:</b>
 Lines starting with
 <code>I</code> indicate that the specified directories are considered as
 <em>library</em> and not as project&#X2019;s directories. The meaning of this
 distinction, which may change in the future, is currently the
 following:</p>
-
 <ul>
 <li>
 All source files (.ml, .mli, .mll, .mly) in a project directory
@@ -224,7 +180,6 @@ program (but the same question arises when the considered program is
 meant to be a library)
 </li>
 </ul>
-
 <p><b>Pack modules (experimental):</b> Pack modules are understood by
 TypeRex if the source directories contain either a file
 <ul>
@@ -235,7 +190,6 @@ TypeRex if the source directories contain either a file
   generated by <code>ocp-type -pack</code>. This option only works if the
   packed modules are in the same directory as the resulting pack.</li>
 </ul></p>
-
 <p><code><b>CMT &lt;dir&gt;</v></code></b> syntax:</b> It is possible
 to specify a <code>CMT</code>
 directory to search for <code>.cmt(i)</code> files when they are not found
@@ -244,34 +198,24 @@ system moves the files around, but then if several modules (in
 different directories) have the same name, then outdated cmts won&#X2019;t be
 assigned unless there only is one (matching with the source digest to
 resolve ambiguity).</p>
-
 <h4>Fallback</h4>
-
 <p>If no specific configuration is provided, TypeRex considers as
 program the set of OCaml source files present in the directory
 containing the edited source file, with no libraries other than the
 OCaml stdlib.</p>
-
 <h2><a name="browsing"></a>Browsing OCaml code with TypeRex</h2>
-
 <p><b>Note on browsing commands:</b> Each cursor motion incurred by a
 browsing action (except when clicking on grep results) is undoable
 with the standard Emacs shortcut (C-_).</p>
-
 <h3>Grep (C-o g / C-o t g)</h3>
-
 <p>(C-o g) display a click-able list (compile minor mode) of the connected
 definitions and occurrences of the identifier under the cursor. Invocation
 is the same as for renaming. Use (C-o t g) to grep the top-level module
 defined by the current file instead of an identifier.</p>
-
 <h3>Goto-definition (C-o d)</h3>
-
 <p>Places the cursor on the definition of the identifier under the cursor,
 opening the appropriate file in the current window if necessary.</p>
-
 <h3>Cycle-definitions (C-o a)</h3>
-
 <p>Places the cursor on an alternate definition of the identifier
 declaration under the cursor, opening the appropriate file in the
 current window if necessary. The typical effect is to switch between
@@ -280,13 +224,10 @@ top-level let-bindings (i.e. &#X2019;let&#X2019; and not
 &#X2019;let..in&#X2019;, external statements, type declarations,
 exception declarations, and (recursive) module and module type
 declarations</p>
-
 <h3>Comment-definition (C-o c)</h3>
-
 <p>Display a description of the identifier under the cursor, with its
 lookup path, and any comments associated with it (in the sense of
-OCamldoc).  The description is:</p>
-
+OCamldoc). The description is:</p>
 <ul>
 <li>the type, for a value or field</li>
 <li>the type declaration, for a type constructor</li>
@@ -294,13 +235,10 @@ OCamldoc).  The description is:</p>
   exception</li>
 <li>the module type, for a module or module type.</li>
 </ul>
-
 <h2><a name="refactoring"></a>Refactoring OCaml code with TypeRex</h2>
-
 <p><b>Note on reverting and undoing:</b> For all refactoring actions, the
 reverting of modified buffers and the undoing take one of the two
 following modes:</p>
-
 <ul>
 <li>If the modification is local to the current buffer, then it is
 reverted while keeping its history, and renamed if needed. This
@@ -312,31 +250,22 @@ only be undone with &#X201C;C-o u&#X201D;. A call to &#X201C;C-o u&#X201D; is al
 onto the local undo lists of all modified buffers for convenience,
 so that (C-_) will also work.</li>
 </ul>
-
 <h3>Multiple-file undo (C-o u)</h3>
-
 <p>Undo the last multiple-file modification. Warning! This discards any
 subsequent modification of the affected files (a confirmation is asked
 in this case). All buffers editing one of the affected files are
 reverted, and their local undo lists are cleared (and then receive a
 single new &#X201C;global-undo&#X201D; item).</p>
-
 <h3>Renaming (C-o r / C-o t r)</h3>
-
 <p>Rename an identifier through an OCaml program.</p>
-
 <p><b>(C-o r):</b> The cursor must be placed on an identifier
 definition or reference (for example, a let binding or a pattern).</p>
-
 <p><b>(C-o t r):</b> Rename the top-level module defined by the
 current file instead of an identifier.</p>
-
 <br/>
-
 <p>Renaming takes care of necessary propagation (e.g., when distinct
 values with the same name need to be renamed consistently because this
 name appears in a common interface), and capture is detected.</p>
-
 <p>Renaming is implemented for: values, types, modules (non-recursive),
 module types, fields, constructors, and exceptions. Aa a convenience,
 a partial, unsound renaming of classes and class types is supported,
@@ -344,7 +273,6 @@ but will miss all references to the &#X201C;secondary&#X201D; bindings of a clas
 or class type, <em>i.e.</em>, the closed and open types, and, for a
 class, the class type. Type variables, instance variable, methods,
 argument labels, and polymorphic variants are not supported.</p>
-
 <p>The replacement is intended to be complete, up to the following known
 bugs:</p>
 
@@ -473,7 +401,7 @@ developing and debugging TypeRex.</p>
 <p>If the OCP server crashes for any reason (or becomes crazy), it is
 possible to restart it using</p>
 
-<pre>    M-x ocp-restart-server</pre>
+<pre> M-x ocp-restart-server</pre>
 
 <h4>Logging</h4>
 
@@ -508,14 +436,11 @@ installed by default).</p>
 
 </div>
 </div>
-
 </div>
 </div>
-
 <div class="footer">
   <div class="container">
    <div class="rows">
-
     <div class="offset3 span3">
      <ul>
        <li><h4>Use</h4></li>
@@ -525,7 +450,6 @@ installed by default).</p>
         <li><a href="faq.html">FAQ</a></li>
      </ul>
     </div>
-
     <div class="span3">
       <ul>
         <li><h4>Manual</h4></li>
@@ -535,10 +459,8 @@ installed by default).</p>
         <li><a href="manual-tools.html">Tools</a></li>
       </ul>
     </div>
-
    </div>
   </div>
-
 <div class="container">
  <div class="contribute">
    This website is edited by <a href="http://www.ocamlpro.com/">OCamlPro</a>.
