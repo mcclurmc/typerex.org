@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+#include "head.include"
+   <title>TypeRex</title>
+</head>
+<body>
+
+#include "body.header.include"
+
+<div class="container">
+
+<h1>Quick Start to TypeRex</h1>
+
+<div class="row">
+
+<div class="span9">
+
+<div class="index"><h2>1. update your Emacs config</h2></div>
+
+<p>The first thing you need is to modify your <code>~/.emacs</code> file to use TypeRex. In TypeRex's source directory, type:</p>
+
+<pre>
+cat emacs.append >> ~/.emacs
+</pre>
+
+<div class="index"><h2>2. create a .typerex file for your project</h2></div>
+
+<p>By default, TypeRex only looks for files in the current
+directory. If your project sources span several directories, you must
+create a <code>.typerex</code> file at the root of your project.</p>
+
+<p>An example of <code>.typerex</code> file with 3 source directories
+and one library directory:</p>
+
+<pre>
+.
+src/tools
+src/libs
+I +batteries
+</pre>
+
+<div class="index"><h2>3. modify your Makefile to build binary  annotation files</h2></div>
+
+<p>If you usually build in bytecode during development, just replace:</p>
+<pre>
+OCAMLC=ocamlc.opt
+OCAMLOPT=ocamlopt.opt
+</pre>
+
+<p>by:</p>
+
+<pre>
+OCAMLC=ocp-ocamlc.opt
+OCAMLOPT=ocamlopt.opt
+</pre>
+
+
+</div>
+</div>
+</div>
+
+#include "body.trailer.include"
+
+</body>
+</html>
